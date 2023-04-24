@@ -1,0 +1,264 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+#root {
+  --left-bar-width: 200px;
+
+  max-height: 100vh;
+  min-width: min-content;
+  /* overflow: hidden; */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.top-bar {
+  flex: 0 0 60px;
+  width: 100%;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.top-bar-left {
+  flex: 0 0 var(--left-bar-width);
+}
+
+.left-bar-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 40px;
+  margin-left: 10px;
+}
+
+.top-bar-main {
+  flex: 1 1 auto;
+}
+
+
+.not-top-bar {
+  /* name is terrible btw */
+  /* overflow-y: scroll; */
+  min-height: 0;
+  width: 100%;
+  flex: 1 1 100vh;
+  display: flex;
+}
+
+
+.left-bar {
+  --transition-duration: .2s;
+  position: relative;
+  min-width: 0;
+  flex: 0 0 var(--left-bar-width);
+  height: 100%;
+  transition: flex var(--transition-duration);
+  /* border: 1px solid black; */
+}
+
+.left-bar-shrunked {
+  flex: 0 0 60px;
+}
+
+.left-bar-positioning {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  height: calc(100% - 5px);
+  width: 100%;
+  transition: width var(--transition-duration);
+  background-color: white;
+  /* border: 1px solid black; */
+}
+
+.new-mail-button {
+  border: 1px solid black;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  margin-left: 10px;
+  width: 120px;
+  white-space: nowrap;
+  transition: width var(--transition-duration);
+}
+
+.new-mail-button-shrunked {
+  width: 40px;
+}
+
+.new-mail-button-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  aspect-ratio: 1;
+  margin-right: 10px;
+}
+
+.left-bar-shrunked>.left-bar-positioning:hover {
+  transition: width var(--transition-duration) var(--transition-duration);
+  width: var(--left-bar-width);
+  box-shadow: 8px 0 7px -7px grey;
+}
+
+.nav-bar {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* .left-bar-shrunked .nav-bar {
+  align-items: center;
+  width: 100%;
+} */
+
+
+.nav-link {
+  --height: 30px;
+  width: 100%;
+  height: var(--height);
+  display: flex;
+  align-items: baseline;
+  border-radius: 0 calc(var(--height) / 2) calc(var(--height) / 2) 0;
+  /* border-top-right-radius: calc(var(--height) / 2);
+  border-bottom-right-radius: calc(var(--height) / 2); */
+  transition: margin var(--transition-duration),
+    padding var(--transition-duration),
+    border-radius var(--transition-duration),
+    width var(--transition-duration);
+  padding-left: 15px;
+}
+
+.nav-link-shrunked {
+  padding-left: 0px;
+  margin-left: 15px;
+  width: var(--height); /* hardcoding bothers me, but any non-fixed value brakes transition */
+  border-radius: calc(var(--height) / 2);
+}
+
+.nav-link:hover {
+  background-color: lightgrey;
+}
+
+.nav-link:focus {
+  background-color: lightblue;
+}
+
+/* .left-bar-shrunked .nav-link-shrunked {
+  border-radius: calc(var(--height) / 2);
+  background-color: white;
+} */
+
+.nav-link-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--height);
+  height: var(--height);
+  flex: 0 0 var(--height);
+  /* margin-left: 10px; */
+  margin-right: 15px;
+  /* border-radius: 50%; */
+}
+
+/* .nav-link-shrunked:hover > .nav-link-icon {
+  background-color: lightgrey;
+}
+
+.nav-link-shrunked:focus > .nav-link-icon {
+  background-color: lightblue;
+} */
+
+
+.hero-container {
+  /* min-height: 0; */
+  min-width: 800px;
+  height: 100%;
+  flex: 1 0;
+  /* border: 1px solid black; */
+}
+
+.hero {
+  --margin: 25px;
+  overflow-y: scroll;
+  /* min-height: 0; */
+  border: 1px solid black;
+  border-radius: 15px;
+  margin: var(--margin) calc(1.5* var(--margin)) var(--margin) 0;
+  height: calc(100% - 2 * var(--margin));
+}
+
+/* .messages {
+} */
+
+.message {
+  height: 2.5em;
+  line-height: 2.5em;
+  border-bottom: 1px solid rgba(.3, .3, .3, .3);
+  padding-left: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.favorite>svg {
+  --star-color: #ff4d4d;
+  /* fill: #ff4d4d; */
+  vertical-align: sub;
+  height: 50%;
+}
+
+.favorite {
+  display: inline-block;
+  height: 100%;
+  aspect-ratio: 1;
+  text-align: center;
+}
+
+.fill {
+  fill: var(--star-color);
+}
+
+.favorite:hover {
+  background-color: rgba(.3, .3, .3, .15);
+  border-radius: 50%;
+}
+
+.mail-editor-bar {
+  position: absolute;
+  bottom: 0px;
+  right: 50px;
+  min-height: 0px;
+  height: 50px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-end;
+}
+
+.mail-editor {
+  border: 1px solid black;
+  background-color: white;
+  margin-right: 2px;
+}
+
+.mail-header {
+  padding: 5px;
+  /* border: 1px solid black; */
+}
+
+.mail-editor-active {
+  height: 120px;
+  width: 80px;
+  min-width: max-content;
+  border-top-left-radius: 5%;
+  border-top-right-radius: 5%;
+}
